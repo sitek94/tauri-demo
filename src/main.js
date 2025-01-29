@@ -7,37 +7,8 @@ window.addEventListener('DOMContentLoaded', () => {
   checkForUpdates()
 })
 
-// Mock implementation
-async function mockCheck() {
-  return {
-    version: '1.1.0',
-    date: '2024-03-20',
-    body: 'Mock update for testing',
-    downloadAndInstall: callback => {
-      // Simulate download progress
-      let downloaded = 0
-      const contentLength = 1024 * 1024 * 10 // 10MB
-
-      callback({event: 'Started', data: {contentLength}})
-
-      const interval = setInterval(() => {
-        downloaded += 1024 * 1024 // 1MB chunks
-        if (downloaded >= contentLength) {
-          clearInterval(interval)
-          callback({event: 'Finished'})
-        } else {
-          callback({event: 'Progress', data: {chunkLength: 1024 * 1024}})
-        }
-      }, 200)
-
-      return Promise.resolve()
-    },
-  }
-}
-
 async function checkForUpdates() {
-  // Switch between real check and mock check here
-  const update = await mockCheck() // Replace with check() for real updates
+  const update = await check()
   if (update) {
     console.log(`Found update ${update.version}`)
 
@@ -111,4 +82,32 @@ async function updateAppTitle() {
   const version = await getVersion()
   const versionEl = document.querySelector('#version')
   versionEl.textContent = version
+}
+
+// Mock implementation
+async function mockCheck() {
+  return {
+    version: '1.1.0',
+    date: '2024-03-20',
+    body: 'Mock update for testing',
+    downloadAndInstall: callback => {
+      // Simulate download progress
+      let downloaded = 0
+      const contentLength = 1024 * 1024 * 10 // 10MB
+
+      callback({event: 'Started', data: {contentLength}})
+
+      const interval = setInterval(() => {
+        downloaded += 1024 * 1024 // 1MB chunks
+        if (downloaded >= contentLength) {
+          clearInterval(interval)
+          callback({event: 'Finished'})
+        } else {
+          callback({event: 'Progress', data: {chunkLength: 1024 * 1024}})
+        }
+      }, 200)
+
+      return Promise.resolve()
+    },
+  }
 }
