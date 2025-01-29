@@ -18,7 +18,8 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: aarch64-apple-darwin #, x86_64-apple-darwin
+          # For now support only Arm based macs (M1 and above)
+          targets: aarch64-apple-darwin
 
       - name: Cache Rust build
         uses: swatinem/rust-cache@v2
@@ -29,9 +30,14 @@ jobs:
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
         with:
           tagName: v__VERSION__
           releaseName: 'Release v__VERSION__'
-          releaseBody: 'Auto-generated release for version __VERSION__'
-          updater: true # Critical for Tauri updater support
-          args: --target universal-apple-darwin # Build universal macOS binary
+          releaseBody: 'See the assets to download this version and install.'
+          includeUpdaterJson: true
+          updaterJsonPreferNsis: false
+          tauriScript: bun tauri
+          # For now support only Arm based macs (M1 and above)
+          args: --target aarch64-apple-darwin
