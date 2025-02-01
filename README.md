@@ -2,7 +2,7 @@
 
 A minimal Tauri v2 demo with:
 
-- automatic release after merging to main branch
+- automatic release after pushing to main branch
 - automatic in-app update check
 - vanilla js frontend
 
