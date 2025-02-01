@@ -1,6 +1,7 @@
 # Tauri Demo
 
-A minimal Tauri v2 demo with automatic release after merging to main branch and automatic app update check.
+A minimal Tauri v2 demo with automatic release after merging to main branch and automatic in-app
+update check.
 
 ## Install on macOS
 
