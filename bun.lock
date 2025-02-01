@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "tauri-demo",
+      "name": "tauri-minimal-demo",
       "dependencies": {
         "@tauri-apps/plugin-process": "^2.2.0",
         "@tauri-apps/plugin-updater": "^2.4.0",
