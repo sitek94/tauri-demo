@@ -16,6 +16,10 @@ A minimal Tauri v2 demo with:
    xattr -d com.apple.quarantine /Applications/tauri-minimal-demo.app
    ```
 
+## Preview
+
+![in-app update](./docs/in-app-update.gif)
+
 ## Bootstrapped with Tauri v2
 
 - [Tauri 2.0](https://tauri.app/)
